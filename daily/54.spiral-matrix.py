@@ -5,9 +5,9 @@ class Solution:
         b = len(matrix[0])
 
         for times in range(0, a):
-            matrix[times].append(1969499)
-            matrix[times].insert(0, 1969499)
-        temp = [1969499] * (b + 2)
+            matrix[times].append(None)
+            matrix[times].insert(0, None)
+        temp = [None] * (b + 2)
         matrix.insert(0, temp)
         matrix.append(temp)
 
@@ -20,8 +20,8 @@ class Solution:
         while count < a * b:
             answer.append(matrix[i][j])
             count += 1
-            matrix[i][j] = 1969499
-            if matrix[i + direction[direct][0]][j + direction[direct][1]] == 1969499:
+            matrix[i][j] = None
+            if matrix[i + direction[direct][0]][j + direction[direct][1]] == None:
                 direct += 1
                 direct %= 4
             i = i + direction[direct][0]

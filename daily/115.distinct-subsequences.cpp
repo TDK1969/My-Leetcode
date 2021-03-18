@@ -8,10 +8,6 @@
 #include <algorithm>
 using namespace std;
 
-int main()
-{
-    return 0;
-}
 //TODO:fix bugs
 class Solution {
 public:
@@ -45,8 +41,9 @@ public:
             }
         }
         int ans = 0;
+        vector<int> count(s.length(), 0);
         for (int i = 0; i < num.size(); i++) {
-            ans += a(s, t, i, 0, num);
+            ans += a(s, t, num[i], 0, count);
         }
         return ans;
     }
@@ -83,3 +80,12 @@ public:
         return count;
     }
 };
+
+int main()
+{
+    Solution test;
+    string s = "rabbbit";
+    string t = "rabbit";
+    printf("%d", test.numDistinct(s, t));
+    return 0;
+}

@@ -9,83 +9,23 @@
 using namespace std;
 
 //TODO:fix bugs
+int dp[1000][1000];
 class Solution {
 public:
-    struct stack_elem {
-        int s_count;
-        int t_count;
-    };
-
-    int a(string s, string t, int s_count, int t_count, vector<int> &num) {
-        if (t_count == t.length() - 1) {
-            num[s_count] = 1;
-            return 1;
-        } else {
-            for (int j = s_count + 1; j < s.length(); j++) {
-                if (s[j] == t[t_count + 1]) {
-                    if (num[j] != 0) {
-                        num[s_count] += num[j];
-                    } else {
-                        num[s_count] += a(s, t, j, t_count + 1, num);
-                    }
-                }
-            }
-            return num[s_count];
-        }
-    }
     int numDistinct(string s, string t) {
-        vector<int> num;
-        for (int i = 0; i < s.length(); i++) {
-            if (s[i] == t[0]) {
-                num.insert(num.begin(), i);
-            }
-        }
-        int ans = 0;
-        vector<int> count(s.length(), 0);
-        for (int i = 0; i < num.size(); i++) {
-            ans += a(s, t, num[i], 0, count);
-        }
-        return ans;
-    }
-    int numDistinct1(string s, string t) {
-        vector<stack_elem> mystack;
-        vector<int> num(s.length(), 0);
-        int count = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s[i] == t[0]) {
-                stack_elem temp;
-                temp.s_count = i;
-                temp.t_count = 0;
-                mystack.push_back(temp);
-            }
+        for (int i = 0; i < s.length() + 1; i++) {
+            dp[0][i] = 1;
         }
 
-        while (!mystack.empty()) {
-            stack_elem rear = mystack.back();
-            mystack.pop_back();
-            if (rear.t_count == t.length() - 1) {
-                count++;
-                num[rear.s_count] = 1;
-            } else {
-                for (int j = rear.s_count + 1; j < s.length(); j++) {
-                    if (s[j] == t[rear.t_count + 1]) {
-                        stack_elem temp;
-                        temp.s_count = j;
-                        temp.t_count = rear.t_count + 1;
-                        mystack.push_back(temp);
-                    }
+        for (int x = 1; x < t.length() + 1; x++) {
+            for (int y = 1; y < s.length() + 1; y++) {
+                dp[x][y] = dp[x][y - 1];
+                if (t[x - 1] == s[y - 1]) {
+                    dp[x][y] += dp[x - 1][y - 1];
                 }
             }
         }
-        return count;
+
+        return dp[t.length()][s.length()];
     }
 };
-
-int main()
-{
-    Solution test;
-    string s = "rabbbit";
-    string t = "rabbit";
-    printf("%d", test.numDistinct(s, t));
-    return 0;
-}

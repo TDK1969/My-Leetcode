@@ -1,5 +1,4 @@
 *.exe
-.vscode/launch.json
-.vscode/tasks.json
+.vscode
 .idea
 .venv

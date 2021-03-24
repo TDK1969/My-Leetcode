@@ -1,4 +1,5 @@
 *.exe
 .vscode
 .idea
-.venv
+venv
+\venv

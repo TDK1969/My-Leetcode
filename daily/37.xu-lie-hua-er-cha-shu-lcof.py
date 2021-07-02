@@ -6,32 +6,75 @@ class TreeNode(object):
 
 class Codec:
 
+    def front(self, root, qianxu):
+        """
+
+        :type root: TreeNode
+        :type qianxu: list
+        """
+        qianxu.append(root.val)
+        if root.left:
+            self.front(root.left, qianxu)
+        if root.right:
+            self.front(root.right, qianxu)
+
+    def middle(self, root, zhongxu):
+        """
+
+        :type root: TreeNode
+        :type zhongxu: list
+        """
+        if root.left:
+            self.middle(root.left, zhongxu)
+        zhongxu.append(root.val)
+        if root.right:
+            self.middle(root.right, zhongxu)
+
     def serialize(self, root):
         """Encodes a tree to a single string.
         
         :type root: TreeNode
         :rtype: str
         """
-        node = []
-        node_val = []
+        qianxu = []
+        zhongxu = []
+        self.front(root, qianxu)
+        self.middle(root, zhongxu)
+        string = ""
+        for i in range(len(qianxu)):
+            string += str(qianxu[i])
+            if i != len(qianxu) - 1:
+                string += '#'
 
-        node.append(root)
-        while node:
-            temp_node = node.pop(0)
-            if temp_node == None:
-                node_val.append(-1005)
-            else:
-                node_val.append(temp_node.val)
-                node.append(temp_node.left)
-                node.append(temp_node.right)
+        string += '@'
 
-            node_string = ""
-            for val in node_val:
-                node_string += str(val)
-                if val != node_val[-1]:
-                    node_string += '#'
+        for i in range(len(zhongxu)):
+            string += str(zhongxu[i])
+            if i != len(zhongxu[i]):
+                string += '#'
 
-            return node_string
+        return string
+
+    def buildtree(self, qianxu, zhongxu):
+        """
+
+        :type qianxu: list
+        :type zhongxu: list
+        :rtype: TreeNode
+        """
+        if zhongxu:
+            val = qianxu.pop(0)
+            i = zhongxu.index(val)
+            left = zhongxu[:i]
+            right = zhongxu[i + 1:]
+
+            newnode = TreeNode(val)
+            newnode.left = self.buildtree(qianxu, left)
+            newnode.right = self.buildtree(qianxu, right)
+
+            return newnode
+        return None
+
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -39,23 +82,20 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        node_val_str = data.split('#')
-        node_val_int = []
-        for val in node_val_str:
-            node_val_int.append(int(val))
+        if not data:
+            return None
+        two = data.split('@')
 
-        node_val_int.insert(0, None)
-        queue = []
-        root = None
-        if node_val_int[1] != 1005:
-            root = TreeNode(node_val_int[1])
+        qianxu = []
+        qian = two[0].split('#')
+        for node in qian:
+            qianxu.append(int(node))
 
-        queue.append((root, 1))
+        zhongxu = []
+        zhong = two[1].split('#')
+        for node in zhong:
+            zhongxu.append(int(node))
 
-        while queue:
-            node, index = queue.pop(0)
-            pass
-
-
-
+        root = self.buildtree(qianxu, zhongxu)
+        return root
 

@@ -13,8 +13,12 @@ class Solution:
         leaves = {}
         for root in trees:
             if root.left:
+                if root.left.val in leaves:
+                    return None
                 leaves[root.left.val] = [root, "L", False]
             if root.right:
+                if root.right.val in leaves:
+                    return None
                 leaves[root.right.val] = [root, "R", False]
 
         for i in range(n - 1, -1, -1):
@@ -45,6 +49,8 @@ class Solution:
                         return None
                 return trees[0]
         return None
+
+root1 = TreeNode()
 
 
 

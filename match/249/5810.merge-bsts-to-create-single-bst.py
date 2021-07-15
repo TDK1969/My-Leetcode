@@ -9,57 +9,45 @@ class TreeNode:
 
 class Solution:
     def canMerge(self, trees: List[TreeNode]) -> TreeNode:
-        root_vals = [x.val for x in trees]
+        n = len(trees)
+        leaves = {}
+        for root in trees:
+            if root.left:
+                leaves[root.left.val] = [root, "L", False]
+            if root.right:
+                leaves[root.right.val] = [root, "R", False]
 
-        def update_leaves(ttrees: List[TreeNode]) -> List[TreeNode]:
-            leaves = []
+        for i in range(n - 1, -1, -1):
+            root = trees[i]
+            if root.val in leaves:
+                parent_obj = leaves[root.val]
+                if parent_obj[1] == "L":
+                    parent_obj[0].left = root
+                if parent_obj[1] == "R":
+                    parent_obj[0].right = root
+                del trees[i]
+        if len(trees) == 1:
+            self.flag = True
+            def check_tree(node, l, r):
+                if node.val < l or node.val > r:
+                    self.flag = False
+                    return
+                if node.left:
+                    leaves[node.left.val][2] = True
+                    check_tree(node.left, l, min(r, node.val))
+                if node.right:
+                    leaves[node.right.val][2] = True
+                    check_tree(node.right, max(l, node.val), r)
+            check_tree(trees[0], -float("inf"), float("inf"))
+            if self.flag:
+                for leaf in leaves:
+                    if not leaves[leaf][2]:
+                        return None
+                return trees[0]
+        return None
 
-            for tree in ttrees:
-                queue = []
-                queue.append(tree)
 
-                while queue:
-                    if tree.left:
-                        queue.append(tree.left)
-                    if tree.right:
-                        queue.append(tree.right)
-                    if not tree.left and not tree.right:
-                        leaves.append(tree)
-            return leaves
-        leaves = update_leaves(trees)
-        leaves_vals = [x.val for x in leaves]
-        if len(leaves_vals) != len(set(leaves_vals)):
-            return None
 
-        leaves_dict = {x.val : x for x in leaves}
-        leaves_vals = set(leaves_vals)
-        while len(trees) > 1:
-            root = None
-            flag = False
-            for i in range(len(trees)):
-                root = trees[i]
-                root_val = root.val
-                if root_val in leaves_vals:
-                    leave = leaves_dict[root_val]
-                    leave = root
-                    flag = True
-                    break
-            if flag:
-                trees.pop(trees.index(root))
-            else:
-                return None
-
-        final_tree = trees[0]
-
-        def check(tree: TreeNode, bottom: int, top: int) -> bool:
-            if tree.val <= bottom or tree.val >= top:
-                return False
-            return check(tree.left, bottom, tree.val) and check(tree.right, trees.val, top)
-
-        if check(final_tree, 0, 50005):
-            return final_tree
-        else:
-            return None
 
 
 

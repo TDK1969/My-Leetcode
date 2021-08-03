@@ -5,10 +5,10 @@ class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         maxtime = 0
         visited = set()
-        network = defaultdict(list)
+        network = defaultdict(lambda: defaultdict(int))
 
         for s, e, w in times:
-            network[s].append((e, w))
+            network[s][e] = w
 
         queue = []
         heapq.heapify(queue)
@@ -20,7 +20,7 @@ class Solution:
             if net not in visited:
                 maxtime = max(maxtime, time)
                 visited.add(net)
-                for e, w in network[net]:
+                for e, w in network[net].items():
                     if e not in visited:
                         heapq.heappush(queue, (time + w, e))
 

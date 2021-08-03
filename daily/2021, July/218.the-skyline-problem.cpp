@@ -19,6 +19,7 @@ public:
 
     vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
         multiset<vector<int>, cmp> h;
+       
         vector<vector<int>> ans;
         int len = buildings.size();
         for (auto t : buildings) {
@@ -44,7 +45,7 @@ public:
             else if (now_point[1] >= next_point[0] && now_point[2] == next_point[2]) {
                 now_point[1] = max(now_point[1], next_point[1]);
             }
-            //错开
+            //错开left
             else if (now_point[1] < next_point[0]) {
                 vector<int> point {now_point[0], now_point[2]};
                 ans.push_back(point);

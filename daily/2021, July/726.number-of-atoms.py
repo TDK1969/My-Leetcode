@@ -1,5 +1,5 @@
 class Solution:
-    def countOfAtoms(self, formula: str) -> str:
+    def count0fAtoms(self, formula: str) -> str:
         atoms_count = ""
         count = {}  # count字典记录原子：数量
 

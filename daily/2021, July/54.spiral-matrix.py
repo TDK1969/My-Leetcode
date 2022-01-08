@@ -1,5 +1,5 @@
 class Solution:
-    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+    def spiral0rder(self, matrix: List[List[int]]) -> List[int]:
         answer = []
         a = len(matrix)
         b = len(matrix[0])

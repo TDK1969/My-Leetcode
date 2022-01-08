@@ -10,7 +10,7 @@ using namespace std;
 
 class Solution {
 public:
-    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+    int erase0verlapIntervals(vector<vector<int>>& intervals) {
         if (intervals.size() == 0) {
             return 0;
         }

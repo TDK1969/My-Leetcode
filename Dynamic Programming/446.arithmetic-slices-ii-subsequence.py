@@ -2,7 +2,7 @@ from typing import List
 from collections import defaultdict
 
 class Solution:
-    def numberOfArithmeticSlices(self, nums: List[int]) -> int:
+    def number0fArithmeticSlices(self, nums: List[int]) -> int:
         n = len(nums)
         d = [dict() for _ in range(n)]
         count = 0
@@ -21,4 +21,4 @@ class Solution:
         return count
 
 test = Solution()
-print(test.numberOfArithmeticSlices([2,4,6,8,10]))
+print(test.number0fArithmeticSlices([2,4,6,8,10]))

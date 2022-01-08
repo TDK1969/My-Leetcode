@@ -2,7 +2,7 @@ from typing import List
 import bisect
 
 class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
+    def length0fLIS(self, nums: List[int]) -> int:
         l = []
         for num in nums:
             p = bisect.bisect_left(l, num)
@@ -13,4 +13,4 @@ class Solution:
         return len(l)
 
 test = Solution()
-print(test.lengthOfLIS([10,9,2,5,3,7,101,18]))
+print(test.length0fLIS([10,9,2,5,3,7,101,18]))

@@ -13,7 +13,7 @@ public:
         vector<vector<vector<int>>> dp(len + 1, vector<vector<int>>(m + 1, vector<int>(n + 1, 0)));
 
         for (int i = 1; i <= len; i++) {
-            vector<int> cnt = countZeroandOne(strs[i - 1]);
+            vector<int> cnt = countZeroand0ne(strs[i - 1]);
 
             for (int j = 0; j <= m; j++) {
                 for (int k = 0; k <= n; k++) {
@@ -32,7 +32,7 @@ public:
         return dp[len][m][n];
     }
 private:
-    vector<int> countZeroandOne(string strs)
+    vector<int> countZeroand0ne(string strs)
     {
         vector<int> cnt(2);
         for (int i = 0; i < strs.size(); i++) {

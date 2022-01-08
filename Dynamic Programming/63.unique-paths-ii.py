@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+    def uniquePathsWith0bstacles(self, obstacleGrid: List[List[int]]) -> int:
         row = len(obstacleGrid)
         col = len(obstacleGrid[0])
         dp = [[0 for _ in range(col)] for _ in range(row)]
@@ -25,4 +25,4 @@ class Solution:
         return dp[-1][-1]
 
 test = Solution()
-print(test.uniquePathsWithObstacles([[0,0,0],[0,1,0],[0,0,0]]))
+print(test.uniquePathsWith0bstacles([[0,0,0],[0,1,0],[0,0,0]]))

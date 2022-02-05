@@ -1,4 +1,5 @@
 def quick_algorithm(a, b, c):
+    # return a ^ b mod c
     a = a % c
     ans = 1
     while b != 0:

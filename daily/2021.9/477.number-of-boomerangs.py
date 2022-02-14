@@ -2,7 +2,7 @@ from typing import List
 from collections import defaultdict
 
 class Solution:
-    def numberOfBoomerangs(self, points: List[List[int]]) -> int:
+    def number0fBoomerangs(self, points: List[List[int]]) -> int:
         ans = 0
         for point in points:
             distances = defaultdict(int)
@@ -13,4 +13,4 @@ class Solution:
         return ans
 
 test = Solution()
-print(test.numberOfBoomerangs([[0,0],[1,0],[2,0]]))
+print(test.number0fBoomerangs([[0,0],[1,0],[2,0]]))

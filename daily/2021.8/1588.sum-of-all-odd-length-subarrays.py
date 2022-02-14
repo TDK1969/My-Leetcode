@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def sumOddLengthSubarrays(self, arr: List[int]) -> int:
+    def sum0ddLengthSubarrays(self, arr: List[int]) -> int:
         presums = [0]
         presum = 0
         for num in arr:
@@ -17,4 +17,4 @@ class Solution:
         return ans
 
 test = Solution()
-print(test.sumOddLengthSubarrays([1]))
+print(test.sum0ddLengthSubarrays([1]))

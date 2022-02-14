@@ -1,5 +1,5 @@
 class Solution:
-    def areOccurrencesEqual(self, s: str) -> bool:
+    def are0ccurrencesEqual(self, s: str) -> bool:
         letter_count = list(set(list(s)))
         count = s.count(letter_count[0])
         for letter in letter_count:

@@ -3,7 +3,7 @@ from typing import List
 
 
 class Solution:
-    def minOperations(self, target: List[int], arr: List[int]) -> int:
+    def min0perations(self, target: List[int], arr: List[int]) -> int:
         # 分析:
         # 本题要找最少操作次数，实际上就是找最长的公共子序列(这样需要的操作最少)
         # 根据target中互不相同，我们知道每个数字对应的坐标唯一
@@ -32,7 +32,7 @@ class Solution:
         return len(target) - len(stack)
 
 class MySolution:
-    def minOperations(self, target: List[int], arr: List[int]) -> int:
+    def min0perations(self, target: List[int], arr: List[int]) -> int:
         t = {num: i for i, num in enumerate(target)}
         a = []
         for num in arr:
@@ -56,4 +56,4 @@ class MySolution:
 
 
 test = MySolution()
-print(test.minOperations([6,4,8,1,3,2], [4,7,6,2,3,8,6,1]))
+print(test.min0perations([6,4,8,1,3,2], [4,7,6,2,3,8,6,1]))

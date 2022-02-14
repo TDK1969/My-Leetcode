@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def numberOfArithmeticSlices(self, nums: List[int]) -> int:
+    def number0fArithmeticSlices(self, nums: List[int]) -> int:
         dp = [[0, 0] for _ in range(len(nums))]
         for i in range(2, len(nums)):
             total = dp[i - 1][0]
@@ -13,7 +13,7 @@ class Solution:
                 dp[i][1] = end + 1
         return dp[-1][0]
 
-    def numberOfArithmeticSlicesBetterSpace(self, nums: List[int]) -> int:
+    def number0fArithmeticSlicesBetterSpace(self, nums: List[int]) -> int:
         total = 0
         end = 0
         for i in range(2, len(nums)):
@@ -25,4 +25,4 @@ class Solution:
         return total
 
 test = Solution()
-print(test.numberOfArithmeticSlicesBetterSpace([1,2,3,4,6,8]))
+print(test.number0fArithmeticSlicesBetterSpace([1,2,3,4,6,8]))

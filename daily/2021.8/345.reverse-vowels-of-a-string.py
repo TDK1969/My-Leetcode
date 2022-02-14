@@ -3,7 +3,7 @@ class Solution:
         n = len(s)
         l = 0
         r = n - 1
-        vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
+        vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', '0', 'U'}
         # python修改字符串需要先将字符串变为列表
         s = list(s)
         while l < r:

@@ -2,7 +2,7 @@ from typing import List
 import bisect
 
 class Solution:
-    def longestObstacleCourseAtEachPosition(self, obstacles: List[int]) -> List[int]:
+    def longest0bstacleCourseAtEachPosition(self, obstacles: List[int]) -> List[int]:
         n = len(obstacles)
         ans = [1] * n
         l = []  # 维护递增序列
@@ -16,4 +16,4 @@ class Solution:
         return ans
 
 test = Solution()
-print(test.longestObstacleCourseAtEachPosition([5,1,5,5,1,3,4,5,1,4]))
+print(test.longest0bstacleCourseAtEachPosition([5,1,5,5,1,3,4,5,1,4]))

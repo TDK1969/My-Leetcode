@@ -27,6 +27,7 @@ class Solution:
             if cmp(words[i], words[i + 1]):
                 return False
         
+        #return words == sorted(words, key=lambda x: (alien_order[i] for i in x))
         return True
 
 test = Solution()

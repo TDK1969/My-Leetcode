@@ -19,6 +19,7 @@ class Solution:
         dp[0] = 0
         
         for i in range(1, len(dp)):
+            # 遍历状态i的所有前一个状态
             for k, v in enumerate(matchsticks):
                 if i & (1 << k) == 0:
                     continue

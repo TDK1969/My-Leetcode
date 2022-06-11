@@ -2,3 +2,5 @@
 .vscode
 .idea
 \venv
+make_solution
+make_solution.py

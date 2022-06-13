@@ -10,7 +10,6 @@ class Solution:
     def heightChecker(self, heights: List[int]) -> int:
         ans = 0
         cnt = [0 for _ in range(105)]
-        n = len(heights)
         for i in heights:
             cnt[i] += 1
         idx = 0
@@ -21,7 +20,6 @@ class Solution:
                 cnt[i] -= 1
                 idx += 1
         
-    
         return ans
 
 test = Solution()

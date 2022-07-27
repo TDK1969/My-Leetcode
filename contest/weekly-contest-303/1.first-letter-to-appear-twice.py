@@ -5,3 +5,11 @@
 
 from typing import *
 from collections import *
+class Solution:
+    def repeatedCharacter(self, s: str) -> str:
+        d = set()
+        for alpha in s:
+            if alpha not in d:
+                d.add(alpha)
+            else:
+                return alpha

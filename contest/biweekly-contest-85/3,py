@@ -1,0 +1,11 @@
+from typing import *
+class Solution:
+    def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
+        ss = list(s)
+        for start, end, d in shifts:
+            for j in range(start, end + 1):
+                ss[j] = chr((ord(ss[j]) + (1 if d else -1) - ord("a")) % 26 + ord("a"))
+        return "".join(ss)
+
+test = Solution()
+print(test.shiftingLetters(s = "abc", shifts = [[0,1,0],[1,2,1],[0,2,1]]))

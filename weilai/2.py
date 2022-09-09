@@ -1,17 +1,26 @@
-
 from typing import *
-def test(n: int, k: int, t: List[List[int]]) -> int:
-    basic = sum(i[0] for i in t)
-    dp = [0 for _ in range(k + 1)]
-    
-    for i in range(n):
-        for j in range(k, -1, -1):
-            if j >= t[i][2]:
-                dp[j] = max(dp[j], dp[j - t[i][2]] + t[i][1] - t[i][0])
-            else:
-                break
+class Solution:
+    def getFactors(self, n: int) -> List[List[int]]:
+        ans = set()
+        cnt = []
+        def dfs(k: int):
+            if k == 1:
+                ans.add(frozenset(cnt))
+                return
+            for i in range(2, k):
+                if i ** 2 > k:
+                    break
+                if k % i == 0:
+                    cnt.append(i)
+                    cnt.append(k // i)
+                    ans.add(frozenset(cnt))
+                    cnt.pop()
+                    dfs(k // i)
+                    cnt.pop()
+        dfs(n)
+        ans = [list(i) for i in ans]
+        return ans
+t = Solution()
+print(t.getFactors(32))
 
-    
-    return 1500 + dp[-1] + basic
-    
-print(test(3, 5, [[1, 4, 2], [1, 2, 1], [1, 3, 3]]))
+

@@ -8,3 +8,17 @@ from typing import *
 from collections import *
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
+        ans = []
+        def dfs(s: str, l: int, r: int):
+            if l == r == n:
+                ans.append(s)
+            elif l < n:
+                dfs(s + "(", l + 1, r)
+            if l > r:
+                dfs(s + ")", l, r + 1)
+        dfs("", 0, 0)
+        return ans
+
+
+test = Solution()
+print(test.generateParenthesis(4))

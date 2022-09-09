@@ -8,3 +8,17 @@ from typing import *
 from collections import *
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
+        i = 0
+        j = 1
+        n = len(nums)
+        while j < n:
+            while j < n and nums[i] == nums[j]:
+                j += 1
+            if j < n:
+                i += 1
+                nums[i] = nums[j]
+                
+        return i + 1
+
+test = Solution()
+print(test.removeDuplicates(nums = [0,0,1,1,1,2,2,3,3,4]))

@@ -11,3 +11,22 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        n = len(nums)
+        i = 0
+        j = n - 1
+        k = 0
+
+        while k < n:
+            if nums[k] == 0 and k > i:
+                nums[k] = nums[i]
+                nums[i] = 0
+                i += 1
+            elif nums[k] == 2 and k < j:
+                nums[k] = nums[j]
+                nums[j] = 2
+                j -= 1
+            else:
+                k += 1
+test = Solution()
+print(test.sortColors([1,1,1,1,1,0,0,0]))
+

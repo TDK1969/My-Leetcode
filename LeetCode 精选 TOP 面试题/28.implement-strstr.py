@@ -8,3 +8,4 @@ from typing import *
 from collections import *
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
+        pass

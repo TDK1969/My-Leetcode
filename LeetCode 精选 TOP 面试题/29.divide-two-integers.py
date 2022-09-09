@@ -8,3 +8,4 @@ from typing import *
 from collections import *
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
+        pass

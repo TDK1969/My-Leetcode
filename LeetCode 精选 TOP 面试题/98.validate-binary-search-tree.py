@@ -7,14 +7,15 @@
 from typing import *
 from collections import *
 # Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+
 class Solution:
+    class TreeNode:
+        def __init__(self, val=0, left=None, right=None):
+            self.val = val
+            self.left = left
+            self.right = right
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def check(r: Optional[TreeNode], low: int, high: int) -> bool:
+        def check(r: Optional[self.TreeNode], low: int, high: int) -> bool:
             if not r:
                 return True
             if r.val <= low or r.val >= high:

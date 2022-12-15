@@ -1,0 +1,7 @@
+"""
+题目: 对数组执行操作
+链接: https://leetcode-cn.com/problems/apply-operations-to-an-array/
+"""
+
+from typing import *
+from collections import *

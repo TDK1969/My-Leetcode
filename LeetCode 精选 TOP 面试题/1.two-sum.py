@@ -14,6 +14,6 @@ class Solution:
             index[num] = i
         
         for i, num in enumerate(nums):
-            if target - num in index:
+            if target - num in index and i != index[target - num]:
                 return [i, index[target - num]]
             

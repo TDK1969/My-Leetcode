@@ -1,23 +1,24 @@
-import os
-import gc
-import psutil
-def show_memory_info(hint):
-    pid = os.getpid()
-    p = psutil.Process(pid)
+'''
+Author: TDK
+Date: 2022-09-09 16:32:08
+LastEditors: TDK 793065367@qq.com
+LastEditTime: 2023-11-15 22:33:29
+FilePath: /My-Leetcode/test.py
+Description: 
+'''
+import json
 
-    info = p.memory_full_info()
-    memory = info.uss / 1024 / 1024
-    print(f"{hint} memory used: {memory}")
+# 提供的字符串
+input_str = '[\"[3,5,1,6,2,0,8,null,null,7,4]\\n5\\n1\", \"[3,5,1,6,2,0,8,null,null,7,4]\\n5\\n4\", \"[1,2]\\n1\\n2\"]'
 
-show_memory_info("initial")
-def func():
-    a = [1 for _ in range(10000000)]
-    show_memory_info("created a")
-func()
-show_memory_info("exit func")
-gc.collect()
-show_memory_info("finish")
+# 移除转义字符
+input_str = input_str.replace('\\n', ',')
 
-a = "tdk1969"
-b = "tdl1969"
-print()
+# 将字符串解析为 JSON 格式
+json_data = json.loads(input_str)
+
+# 将 JSON 数据转换为格式化字符串
+formatted_str = json.dumps(json_data, indent=2)
+
+# 打印格式化的 JSON 字符串
+print(formatted_str)

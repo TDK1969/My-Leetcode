@@ -1,45 +1,29 @@
-arr = [
-    410719615,
-    582255842,
-    1026140150,
-    1296257913,
-    1437840500,
-    1870407145,
-    2250211548,
-    2753623628,
-    3149780312,
-    3419873751,
-    3542599386,
-    4134892627,
-    2212294583,
-    1842515611,
-    450215437,
-    4088798008,
-    2226203566,
-    498629140
-]
-hashmap = {
-    410719615: "node3",
-    582255842: "node2",
-    1026140150: "node1",
-    1296257913: "node4",
-    1437840500: "node3",
-    1870407145: "node2",
-    2250211548: "node4",
-    2753623628: "node2",
-    3149780312: "node1",
-    3419873751: "node4",
-    3542599386: "node3",
-    4134892627: "node1",
-    2212294583: "1",
-    450215437: "2",
-    1842515611: "3",
-    4088798008: "4",
-    2226203566: "5",
-    498629140: "6"
-}
+N, M = 2, 1
+dislikes = []
+for _ in range(M):
+    X, Y = 1, 1
+    dislikes.append((X, Y))
 
-arr.sort()
+girls = [0 for _ in range(N)]
+boys = list(range(1, N + 1))
+visited = [False for _ in range(N)]
 
-for num in arr:
-    print(f"{num} ({hashmap[num]})")
+def dfs(current):
+    if current == N:
+        unhappy = 0
+        for i in range(N):
+            pre, nxt = girls[(i - 1) % N], girls[i]
+            if (i + 1, pre) in dislikes or (i + 1, nxt) in dislikes:
+                unhappy += 1
+        return unhappy
+    min_unhappy = float("inf")
+    for i in range(N):
+        if not visited[i]:
+            visited[i] = True
+            girls[current] = boys[i]
+            min_unhappy = min(min_unhappy, dfs(current + 1))
+            visited[i] = False
+    return min_unhappy
+
+print(dfs(0))
+           

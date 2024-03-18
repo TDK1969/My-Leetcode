@@ -32,7 +32,7 @@ def GetSolutionContent(title: str) -> str:
         },
         "query": "query questionData($titleSlug: String!) {\n  question(titleSlug: $titleSlug) {\n questionFrontendId\n  translatedTitle \n  codeSnippets {\n      lang\n      langSlug\n      code\n      __typename\n    }\n}\n}\n"
     }
-    url = "https://leetcode-cn.com/graphql/"
+    url = "https://leetcode.cn/graphql/"
 
     res:requests.Response = requests.post(
         url=url,
@@ -64,7 +64,7 @@ def GetSolutionTestCase(title: str) -> str:
         },
         "operationName": "consolePanelConfig"
     }
-    url = "https://leetcode-cn.com/graphql/"
+    url = "https://leetcode.cn/graphql/"
 
     res:requests.Response = requests.post(
         url=url,
@@ -95,20 +95,20 @@ def CreateSolutionFile(name:str, title: str, chineseTitle: str, content: str, te
         name (str): 文件名
     '''
     monthDir = datetime.now().strftime("%Y.%m")
-    leetcodeBasePath = "/home/tdk/Study/My-Leetcode/daily/"
+    leetcodeBasePath = "/home/TDK/Study/My-Leetcode/daily/"
     if not os.path.exists(leetcodeBasePath + monthDir):
         os.makedirs(leetcodeBasePath + monthDir)
 
     #solution_path = f"{leetcodeBasePath}{monthDir}/{name}.py"
-    solution_dir = f"/home/tdk/Study/My-Leetcode/LeetCodeGo/{name}"
+    solution_dir = f"/home/TDK/Study/My-Leetcode/LeetCodeGo/{name}"
     if not os.path.exists(solution_dir):
         os.makedirs(solution_dir, exist_ok=True)
-    solution_path = f"/home/tdk/Study/My-Leetcode/LeetCodeGo/{name}/{name}.go"
+    solution_path = f"/home/TDK/Study/My-Leetcode/LeetCodeGo/{name}/{name}.go"
     if os.path.exists(solution_path):
         print("文件已存在")
     timeStr = datetime.now().strftime('%Y-%m-%d')
     with open(solution_path, "w+") as f:
-        preContent = f'/* INTRODUCTION\n *日期: {timeStr}\n *题目: {chineseTitle}\n *链接: https://leetcode-cn.com/problems/{title}/\n */\n\npackage main\nimport (\n\t"fmt"\n)\n//--CODE BEGIN--\n\n//lint:ignore U1000 Ignore unused function check\n'
+        preContent = f'/* INTRODUCTION\n *日期: {timeStr}\n *题目: {chineseTitle}\n *链接: https://leetcode.cn/problems/{title}/\n */\n\npackage main\nimport (\n\t"fmt"\n)\n//--CODE BEGIN--\n\n//lint:ignore U1000 Ignore unused function check\n'
         after_content = f'\n//--CODE END--\n'
         test_content = "func main() {\n\n}"
         f.write(preContent + content + after_content + testCaseContent + test_content)

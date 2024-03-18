@@ -8,6 +8,8 @@ header = {
     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; rv2.0.1) Gecko/20100101 Firefox/4.0.1',
 }
 
+book_name = "top-interview-150"
+
 def GetSolutionContent(title: str) -> str:
     '''获取每日一题的模板
 
@@ -24,7 +26,7 @@ def GetSolutionContent(title: str) -> str:
         },
         "query": "query questionData($titleSlug: String!) {\n  question(titleSlug: $titleSlug) {\n questionFrontendId\n  translatedTitle \n  codeSnippets {\n      lang\n      langSlug\n      code\n      __typename\n    }\n}\n}\n"
     }
-    url = "https://leetcode-cn.com/graphql/"
+    url = "https://leetcode.cn/graphql/"
 
     res:requests.Response = requests.post(
         url=url,
@@ -56,7 +58,7 @@ def GetSolutionTestCase(title: str) -> str:
         },
         "operationName": "consolePanelConfig"
     }
-    url = "https://leetcode-cn.com/graphql/"
+    url = "https://leetcode.cn/graphql/"
 
     res:requests.Response = requests.post(
         url=url,
@@ -86,13 +88,7 @@ def CreateSolutionFile(name:str, title: str, chineseTitle: str, content: str, te
     Args:
         name (str): 文件名
     '''
-    monthDir = datetime.now().strftime("%Y.%m")
-    leetcodeBasePath = "/home/tdk/Study/My-Leetcode/daily/"
-    if not os.path.exists(leetcodeBasePath + monthDir):
-        os.makedirs(leetcodeBasePath + monthDir)
-
-    #solutionPath = f"{leetcodeBasePath}{monthDir}/{name}.py"
-    solutionPath = f"/home/tdk/Study/My-Leetcode/LeetCode 精选 TOP 面试题/{name}.py"
+    solutionPath = f"/home/TDK/Study/My-Leetcode/LeetCode Book/{book_name}/{name}.py"
     if os.path.exists(solutionPath):
         print("文件已存在")
     timeStr = datetime.now().strftime('%Y-%m-%d')
@@ -106,7 +102,7 @@ def main():
 
     assert len(sys.argv) == 2, "参数个数错误"
     question_url = sys.argv[1]
-    question_name = question_url.split("/")[-2]
+    question_name = question_url.split("/")[4]
 
     question_id, titleCn, content = GetSolutionContent(question_name)
     testCaseContent = GetSolutionTestCase(question_name)

@@ -88,7 +88,7 @@ def CreateSolutionFile(name:str, title: str, chineseTitle: str, content: str, te
     Args:
         name (str): 文件名
     '''
-    solutionPath = f"/home/TDK/Study/My-Leetcode/LeetCode Book/{book_name}/{name}.py"
+    solutionPath = f"/home/TDK/Projects/My-Leetcode/LeetCode Book/{book_name}/{name}.py"
     if os.path.exists(solutionPath):
         print("文件已存在")
     timeStr = datetime.now().strftime('%Y-%m-%d')

@@ -24,6 +24,15 @@ class Solution:
             j += 1
         return j
 
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        n = len(nums)
+        for i in range(n):
+            while nums[i] != i + 1:
+                j = nums[i]
+                if j >= n or j < 0 or j < i or nums[j] == j + 1:
+                    break
+
+
 test = Solution()
 print(test.firstMissingPositive([2]))
 

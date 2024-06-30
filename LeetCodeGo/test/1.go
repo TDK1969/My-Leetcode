@@ -1,24 +1,38 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"net/http"
+	"sync"
 )
 
 func main() {
-	resp, err := http.Get("https://ifconfig.me/ip")
-	if err != nil {
-		fmt.Println("无法获取公网 IP:", err)
-		return
-	}
-	defer resp.Body.Close()
+	m := make(map[string]*struct{ foo int })
+	m["foo1"] = &struct{ foo int }{foo: 1}
+	m["foo2"] = &struct{ foo int }{foo: 1}
+	//m["foo2"] = 2
+	//mu := sync.RWMutex{}
 
-	ip, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println("无法读取响应:", err)
-		return
-	}
+	var wg sync.WaitGroup
+	wg.Add(2)
 
-	fmt.Println("公网 IP 地址:", string(ip))
+	go func() {
+		for i := 0; i < 1000; i++ {
+			//mu.Lock()
+			//delete(m, "foo")
+			m["foo1"].foo++
+			//mu.Unlock()
+		}
+		wg.Done()
+	}()
+
+	go func() {
+		for i := 0; i < 1000; i++ {
+			//mu.Lock()
+			//delete(m, "foo")
+			m["foo2"].foo++
+			//mu.Unlock()
+		}
+		wg.Done()
+	}()
+
+	wg.Wait()
 }

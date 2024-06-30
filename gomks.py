@@ -94,16 +94,10 @@ def CreateSolutionFile(name:str, title: str, chineseTitle: str, content: str, te
     Args:
         name (str): 文件名
     '''
-    monthDir = datetime.now().strftime("%Y.%m")
-    leetcodeBasePath = "/home/TDK/Study/My-Leetcode/daily/"
-    if not os.path.exists(leetcodeBasePath + monthDir):
-        os.makedirs(leetcodeBasePath + monthDir)
-
-    #solution_path = f"{leetcodeBasePath}{monthDir}/{name}.py"
-    solution_dir = f"/home/TDK/Study/My-Leetcode/LeetCodeGo/{name}"
+    solution_dir = f"/home/TDK/Projects/My-Leetcode/LeetCodeGo/{name}"
     if not os.path.exists(solution_dir):
         os.makedirs(solution_dir, exist_ok=True)
-    solution_path = f"/home/TDK/Study/My-Leetcode/LeetCodeGo/{name}/{name}.go"
+    solution_path = f"/home/TDK/Projects/My-Leetcode/LeetCodeGo/{name}/{name}.go"
     if os.path.exists(solution_path):
         print("文件已存在")
     timeStr = datetime.now().strftime('%Y-%m-%d')

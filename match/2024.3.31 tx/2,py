@@ -1,0 +1,28 @@
+from typing import *
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution:
+    def canSorted(self, lists: List[ListNode]) -> List[bool]:
+        # write code here
+        ans = []
+        for head in lists:
+            # flag = True 表示还没有遇到递减，False表示遇到过一次递减
+            flag = True
+            p = head
+            q = head.next
+            while q:
+                if p.val > q.val:
+                    if flag:
+                        flag = False
+                    else:
+                        ans.append(False)
+                        break
+                p = p.next
+                q = q.next
+            if not q:
+                ans.append(True)
+        return ans

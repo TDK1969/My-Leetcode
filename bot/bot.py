@@ -15,12 +15,6 @@ headers = {
     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; rv2.0.1) Gecko/20100101 Firefox/4.0.1',
 }
 
-requestPayload = {
-    'query':'{\n  contestUpcomingContests {\n    containsPremium\n    title\n    cardImg\n    titleSlug\n    description\n    startTime\n    duration\n    originStartTime\n    isVirtual\n    isLightCardFontColor\n    company {\n      watermark\n      __typename\n    }\n    __typename\n  }\n}\n',
-    'variables':{},
-    'operationName':None
-}
-
 def GetCodeDefinition(questionId: int) -> str:
     '''获取代码模板
 
@@ -96,6 +90,11 @@ def GetRecentContests() -> List[List[str]]:
     """
     
     s = requests.Session()
+    requestPayload = {
+        'query':'{\n  contestUpcomingContests {\n    containsPremium\n    title\n    cardImg\n    titleSlug\n    description\n    startTime\n    duration\n    originStartTime\n    isVirtual\n    isLightCardFontColor\n    company {\n      watermark\n      __typename\n    }\n    __typename\n  }\n}\n',
+        'variables':{},
+        'operationName':None
+    }
     response = s.post(url='https://leetcode.cn/graphql/', headers=headers, json=requestPayload)
     assert response.status_code == 200, f'获取力扣竞赛页面时出现错误, status code = {response.status_code}'
     recentContests = response.json()

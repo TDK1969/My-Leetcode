@@ -1,0 +1,20 @@
+from typing import List
+from collections import defaultdict
+class Solution:
+    def countPairs(self, nums: List[int]) -> int:
+        c = defaultdict(list)
+        for num in nums:
+            res = 0
+            t = num
+            while t:
+                k = t % 10
+                res |= 1 << k
+                t = t // 10
+            c[res].append(num)
+
+        ans = 0 
+        for num in nums:
+            for t in c[]
+
+print(Solution().countPairs([3,12,30,17,21]))
+            

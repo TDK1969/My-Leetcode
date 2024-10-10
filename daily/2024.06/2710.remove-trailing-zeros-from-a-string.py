@@ -9,6 +9,14 @@ from collections import *
 from leetcode_utils import *
 class Solution:
     def removeTrailingZeros(self, num: str) -> str:
+        n = len(num)
+        ans = []
+        for i in range(n - 1, -1, -1):
+            if num[i] == "0" and len(ans) == 0:
+                continue
+            else:
+                ans.append(num[i])
+        return "".join(reversed(ans))
 
 """
 --TESTCASE BEGIN--
